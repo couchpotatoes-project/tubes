@@ -1,0 +1,42 @@
+<!-- tubes/templates/index.html -->
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Game Rule</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/gamerule.css' %}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script>
+        
+    </script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            <div class="comingsoonlogo">
+                <img src="{% static 'images/CouchPotatoesLogo.png' %}" />
+            </div>
+        </div>
+        <div class="col-md-8">
+                <h2 align="center">About Tubes</h2>
+                <p>Briefly, your challenge is to connect all the dots on the grid, without leaving any spot empty. You can only connect dots of the same color to create a tube between them. The total number of tubes equals the minimum amount of moves necessary to complete the level in a perfect manner. As the game passes through levels, the grid becomes larger, and you are faced with more and more dots, making it increasingly difficult to solve the puzzles.</p>
+                <p>image to be inserted here</p>
+                <h2 align="center">Something Interesting</h2>
+                <p>Generally, simple games as this are enjoyed by people of any age, which brings home the point that you’re never too old to play. That’s because you are never too old to learn something new. You don’t need anyone’s permission to play a game. The same is true in life. Sometimes, you just have to follow your impulse.</p>
+                <p class="quote">Just try!</p>
+                <p>image to be inserted here</p>
+                <p>Tubes starts with an easy 5×5 grid and 5 tubes, i.e. 5 pairs of dots you need to connect. Compare that to the complex 9×9 grid with 9 tubes.</p>
+                <p>In a game, you’d never ever think of starting with the most difficult level, that would not be fun. The whole design encourages you to start from level 1 and often makes it impossible to jump ahead. Yet in life, we try to get ahead of ourselves all the time, which can be very frustrating. Game designers understand it’s necessary to keep the player engaged, meaning they must maintain the delicate balance between challenge and frustration. </p>
+        </div>
+        <div class="col-md-2">
+                <button type="button" class="btn btn-dark">PLAY</button>
+        </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+body {
+    background: url('../images/background.jpg');
+	background-repeat: no-repeat;
+	height: 100%;
+    width: 100%;
+	background-size: cover;
+	max-width: 100%;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    padding: 2em;
+}
+
+/* .container {
+	width: 98%;
+    height: 98%;
+    position: relative;
+} */
+
+.comingsoonlogo img{
+    max-height: 100%;
+    max-width: 100%;
+	min-height: 100%;
+    min-width: 100%;
+	text-shadow: 0 0 10px black, 1px 1px 10px black, 2px 2px 10px black, -1px -1px 10px black, -2px -2px 10px black;
+}
+
+.comingsoonlogo {
+    position: relative;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes logo {
+    0%   {left:0px; top:0px;}
+	1%   {left:-350px; top:0px;}
+	65%  {left:75%; top:0px;}
+    100% {left:0px; top:0px;}
+}
+
+/* Standard syntax */
+@keyframes logo {
+    0%   {left:0px; top:0px;}
+	1%   {left:-350px; top:0px;}
+	65%  {left:75%; top:0px;}
+    100% {left:0px; top:0px;}
+}
+
+h1 {
+  color: white;
+  font-family: 'Righteous', serif;
+  font-size: 80px; 
+  text-shadow: .03em .03em 0 hsla(230,40%,50%,1);
+}
+
+.description {
+    font-family: 'Calibri', sans-serif;
+    font-weight: bold;
+    display: block;
+    font-size: 20px;
+    font-style: italic;
+    position: relative;
+    margin-top: 7%;
+    text-align:left;
+    left: auto;
+    right: auto;
+  }
+  
+  .comingsoon {
+    opacity: 0;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    display:block;
+    position: relative;
+    margin-top: 7%;
+    left: auto;
+    right: auto;
+    text-align: center;
+  }
+  
+  h2 {
+    font-family: "Source Sans Pro";
+    font-weight: 700;
+    color: #432d2d;
+  }
+  
+.quote {
+    font-family: "Source Sans Pro";
+    font-size: 18px;
+    font-weight: 700;
+    font-style: normal;
+    line-height: 1.4!important;
+    color: #69656e;
+    margin: 0 5%;
+}
