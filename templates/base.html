@@ -1,0 +1,25 @@
+<!-- tubes/templates/index.html -->
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Game Rule</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script>
+        
+    </script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="comingsoonlogo">
+        <img src="{% static 'images/CouchPotatoesLogo.png' %}" />
+    </div>
+     {% block sidebar %}<!-- insert default navigation text for every page -->{% endblock %}
+     {% block content %}<!-- default content text (typically empty) -->{% endblock %}   
+</div>
+</body>
+
+</html>
