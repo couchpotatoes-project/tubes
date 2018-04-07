@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from django.template  import RequestContext
 from game.forms import RegistrationForm
 from django.views.generic import TemplateView
 
@@ -12,7 +13,11 @@ def register(request):
         if form.is_valid():
             form.save()
             return redirect('/home')
-           # return render(request,'home/',context_instance=RequestContext(request))
+            #return render(request,'/home',context_instance=RequestContext(request))
+        else:
+            form = RegistrationForm()
+            args = {'form': form}
+            return render(request, 'registration.html', args)
     else:
         form = RegistrationForm()
         args = {'form': form}
