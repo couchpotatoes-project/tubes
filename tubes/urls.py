@@ -15,13 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls import url
+from game import views
 #from django.views.generic.base import RedirectView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('comingsoon.urls')),
-    path('comingsoon/', include('comingsoon.urls')),
-    path('accounts/', include('django.contrib.auth.urls')),
+	url(r'^$', views.HomePageView.as_view()),
+	path('gamerule/', views.gamerule, name="gamerule"),
+	path('home/', views.success, name='success'),
+	path('register/', views.register, name='register')
+    #path('', include('comingsoon.urls')),
+    #path('comingsoon/', include('comingsoon.urls')),
+    #path('accounts/', include('django.contrib.auth.urls')),
+	#path('', views.register, name='register'),	
+    #path('gamerule/', views.gamerule, name="gamerule")
     #redirect to the comingsoon page when going to the index page
     #path('', RedirectView.as_view(url='/comingsoon/')),
 

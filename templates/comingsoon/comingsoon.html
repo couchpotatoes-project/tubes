@@ -1,0 +1,102 @@
+<!-- tubes/templates/index.html -->
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Tubes</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="{% static 'js/velocity-min.js' %}" type="text/javascript"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			setTimeout(textAnimation, 4000);
+			setTimeout(typeDescription,9000);
+		});
+		function textAnimation() {
+			var $orbs = $('.presents span');
+			$orbs.css('display', 'inline-block');
+			$orbs.velocity({ 'top': '-500px', scaleX: '.1', scaleY: '.1', color: '#000000' }, 0);
+			var orb = 0;
+			var numOrbs = $orbs.length;
+
+			dropOrbs = function () {
+				$orbs.eq(orb).velocity({ top: '10px' }, 400).velocity({ scaleX: 0.1, scaleY: 0.1, color: '#fff' }, 1000);
+				$orbs.css("position", "relative");
+				orb = orb + 1;
+				if (orb < numOrbs) {
+					setTimeout(dropOrbs, 75);
+				}
+				else {
+					setTimeout(function () { $('.glow').velocity({ opacity: 1 }, 1200); }, 1200);
+				}
+			}
+			setTimeout(dropOrbs, 400);
+		}
+
+		function typeDescription() {
+			var text = "Tubes is a connecting dots game. The game has network of squares and some of the squares contain dots. There are exactly two alike dots which should relate to each other. To complete the game, all the matching dots must be connected.";
+			var chars = text.split("");
+			var typed = "";
+			var state = 0;
+			var type = setInterval(function () {
+				if (chars.length > 0) {
+					var char = chars.shift();
+					if (char == "\n")
+						char = "<br />"
+					else if (char == ";") {
+						state += 1;
+						//document.body.className += " state" + state;
+					}
+					typed += char;
+					document.getElementById("description").innerHTML = typed;
+				}
+				else {
+					clearInterval(type);
+					setTimeout(function () { $('.comingsoon').velocity({ opacity: 1 }, 1200); }, 1200);
+				}
+			}, 50);
+
+			setTimeout(type, 500);
+		}
+
+	</script>
+</head>
+
+<body>
+	<div class="comingsoonlogo">
+		<img src="{% static 'images/CouchPotatoesLogo.png' %}" />
+	</div>
+	<div class="container">
+
+		<div>
+			<span class="presents" align="center">
+				<span>p</span>
+				<span>r</span>
+				<span>e</span>
+				<span>s</span>
+				<span>e</span>
+				<span>n</span>
+				<span>t</span>
+				<span>s</span>
+			</span>
+		</div>
+		<div>
+			<span class="glow" align="center">
+				<h1>TUBES</h1>
+			</span>
+		</div>
+		<div>
+			<span id="description" class="description" align="center">
+			</span>
+		</div>
+		<div>
+			<span class="comingsoon" align="center">
+				<h2>Coming Soon</h2>
+			</span>
+		</div>
+	</div>
+</body>
+
+</html>

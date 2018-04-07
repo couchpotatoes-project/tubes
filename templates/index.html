@@ -5,63 +5,60 @@
 
 <head>
 	<title>Tubes</title>
-	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="{% static 'js/velocity-min.js' %}" type="text/javascript"></script>
-
-	<script type="text/javascript">
-		$(document).ready(function () {
-			setTimeout(textAnimation, 4000);
-			setTimeout(typeDescription,9000);
-		});
-		function textAnimation() {
-			var $orbs = $('.presents span');
-			$orbs.css('display', 'inline-block');
-			$orbs.velocity({ 'top': '-500px', scaleX: '.1', scaleY: '.1', color: '#000000' }, 0);
-			var orb = 0;
-			var numOrbs = $orbs.length;
-
-			dropOrbs = function () {
-				$orbs.eq(orb).velocity({ top: '10px' }, 400).velocity({ scaleX: 0.1, scaleY: 0.1, color: '#fff' }, 1000);
-				$orbs.css("position", "relative");
-				orb = orb + 1;
-				if (orb < numOrbs) {
-					setTimeout(dropOrbs, 75);
-				}
-				else {
-					setTimeout(function () { $('.glow').velocity({ opacity: 1 }, 1200); }, 1200);
-				}
-			}
-			setTimeout(dropOrbs, 400);
+	<link rel="stylesheet" type="text/css" href="{% static 'css/game.css' %}" />
+	<style type="text/css">
+		*,
+		*:before,
+		*:after {
+		  box-sizing: inherit;
+		  padding: 0;
+		  margin: 0;
+		  letter-spacing: 1.1px;
 		}
 
-		function typeDescription() {
-			var text = "Tubes is a connecting dots game. The game has network of squares and some of the squares contain dots. There are exactly two alike dots which should relate to each other. To complete the game, all the matching dots must be connected.";
-			var chars = text.split("");
-			var typed = "";
-			var state = 0;
-			var type = setInterval(function () {
-				if (chars.length > 0) {
-					var char = chars.shift();
-					if (char == "\n")
-						char = "<br />"
-					else if (char == ";") {
-						state += 1;
-						//document.body.className += " state" + state;
-					}
-					typed += char;
-					document.getElementById("description").innerHTML = typed;
-				}
-				else {
-					clearInterval(type);
-					setTimeout(function () { $('.comingsoon').velocity({ opacity: 1 }, 1200); }, 1200);
-				}
-			}, 50);
-
-			setTimeout(type, 500);
+		.menu {
+		  display: flex;
+		  justify-content: center;
+		  align-items: center;
+		  max-width: 720px;
+		  margin: 0 auto;
+		  height: 100vh;
+		  list-style: none;
 		}
 
-	</script>
+		.menu li {
+		  width: 125px;
+		  height: 50px;
+		  transition: background-position-x 0.9s linear;
+		  text-align: center;
+
+		  a {
+			font-size: 22px;
+			color: #777;
+			text-decoration: none;
+			transition: all 0.45s;
+		  }
+
+		  &:hover {
+			background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEi%0D%0AIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhs%0D%0AaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKCSB3aWR0%0D%0AaD0iMzkwcHgiIGhlaWdodD0iNTBweCIgdmlld0JveD0iMCAwIDM5MCA1MCIgZW5hYmxlLWJhY2tn%0D%0Acm91bmQ9Im5ldyAwIDAgMzkwIDUwIiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPHBhdGggZmlsbD0i%0D%0Abm9uZSIgc3Ryb2tlPSIjZDk0ZjVjIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLW1pdGVybGlt%0D%0AaXQ9IjEwIiBkPSJNMCw0Ny41ODVjMCwwLDk3LjUsMCwxMzAsMAoJYzEzLjc1LDAsMjguNzQtMzgu%0D%0ANzc4LDQ2LjE2OC0xOS40MTZDMTkyLjY2OSw0Ni41LDI0My42MDMsNDcuNTg1LDI2MCw0Ny41ODVj%0D%0AMzEuODIxLDAsMTMwLDAsMTMwLDAiLz4KPC9zdmc+Cg==");
+			animation: line 1s;
+		  }
+
+		  &:hover a {
+			color: #d94f5c;
+		  }
+
+		  &:not(:last-child) {
+			margin-right: 30px;
+		  }
+		}
+
+		@keyframes line {
+		  0% {
+			background-position-x: 390px;
+		  }
+		}
+	</style>
 </head>
 
 <body>
@@ -69,35 +66,18 @@
 		<img src="{% static 'images/CouchPotatoesLogo.png' %}" />
 	</div>
 	<div class="container">
-
-		<div>
-			<span class="presents" align="center">
-				<span>p</span>
-				<span>r</span>
-				<span>e</span>
-				<span>s</span>
-				<span>e</span>
-				<span>n</span>
-				<span>t</span>
-				<span>s</span>
-			</span>
-		</div>
 		<div>
 			<span class="glow" align="center">
 				<h1>TUBES</h1>
 			</span>
 		</div>
-		<div>
-			<span id="description" class="description" align="center">
-			</span>
-		</div>
-		<div>
-			<span class="comingsoon" align="center">
-				<h2>Coming Soon</h2>
-			</span>
-		</div>
-		<a class="comingsoon" align="center" href="gamerule/">Game Rule</a>
-		<a class="comingsoon" align="center" href="accounts/login">Login</a>		
+		<nav>
+			<ul class="menu">
+				<li><a href="gamerule/">Rules</a></li>
+				<li><a href="register/">Sign Up</a></li>
+				<li><a href="#!">Sign In</a></li>
+		  </ul>
+		</nav>
 	</div>
 </body>
 
