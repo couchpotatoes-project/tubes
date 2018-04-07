@@ -11,7 +11,8 @@ def register(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request,'home/',context_instance=RequestContext(request))
+            return redirect('/home')
+           # return render(request,'home/',context_instance=RequestContext(request))
     else:
         form = RegistrationForm()
         args = {'form': form}
