@@ -12,19 +12,11 @@ def register(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/home')
-            #return render(request,'/home',context_instance=RequestContext(request))
-        else:
-            form = RegistrationForm()
-            args = {'form': form}
-            return render(request, 'registration.html', args)
+            return redirect('/accounts/login')
     else:
         form = RegistrationForm()
-        args = {'form': form}
-        return render(request, 'registration.html', args)
+    args = {'form': form}
+    return render(request, 'registration.html', args)
     
-def success(request):
-    return render(request, 'submit.html')
-
 def gamerule(request):
     return render(request, 'gamerule/gamerule.html' , context=None)

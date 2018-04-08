@@ -22,11 +22,9 @@ from game import views
 urlpatterns = [
 	url(r'^$', views.HomePageView.as_view()),
 	path('gamerule/', views.gamerule, name="gamerule"),
-	path('home/', views.success, name='success'),
 	path('register/', views.register, name='register'),
     path('admin/', admin.site.urls),
     #path('', include('comingsoon.urls')),
     #path('comingsoon/', include('comingsoon.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-	#path('', views.register, name='register'),	
 ]
