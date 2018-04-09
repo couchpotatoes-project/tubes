@@ -27,4 +27,5 @@ urlpatterns = [
     #path('', include('comingsoon.urls')),
     #path('comingsoon/', include('comingsoon.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
+	path('home/', views.home, name="home"),
 ]

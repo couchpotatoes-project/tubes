@@ -40,8 +40,6 @@ class RegistrationForm(UserCreationForm):
             email = self.cleaned_data["email"]
             try:
                 user = User.objects.get(email=email)
-                print (user.email)
-                print (user.username)
                 raise forms.ValidationError("This email address already exists. Did you forget your password?")
             except User.DoesNotExist:
                 return email  

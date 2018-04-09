@@ -18,5 +18,8 @@ def register(request):
     args = {'form': form}
     return render(request, 'registration.html', args)
     
+def home(request):
+    return render(request, 'game/tubes.html' , context=None)
+	
 def gamerule(request):
     return render(request, 'gamerule/gamerule.html' , context=None)
