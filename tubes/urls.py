@@ -28,4 +28,5 @@ urlpatterns = [
     #path('comingsoon/', include('comingsoon.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
 	path('home/', views.home, name="home"),
+	path('tubes/', views.tubes, name="tubes")
 ]

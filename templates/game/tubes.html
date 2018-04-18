@@ -1,4 +1,6 @@
 {% load staticfiles %}
+{% load tubes %}
+{% autoescape on %}
 <!DOCTYPE html>
 <html>
 	<head>
@@ -33,12 +35,19 @@
 			var moves = 0;
 			var circleList = [];
 			var points = [];
-			
+			var colors = ["red","blue","green","brown","purple"];
 			function loadPoints(){
-				var str = document.getElementById("points").innerHTML;
-				var values = str.substring(1,str.length-1).split(',');
+				/*var str = document.getElementById("points").innerHTML;*/
+				var values = [1,4,5,8,9,12,13,16];
+				var count=0;
 				for(var i=0;i<values.length;i++){
 					points.push(parseInt(values[i]));
+					if(i%2==0){
+						document.getElementById(values[i]).style.backgroundColor = colors[count];
+					}
+					else{
+						document.getElementById(values[i]).style.backgroundColor = colors[count++];
+					}
 				}
 			}
 			
@@ -81,10 +90,11 @@
 				}
 			}
 		</script>
-		{% squares = 4 %}
-		%points = [1,4,5,8,9,12,13,16]
-		%index = 0
-		%colors = ["red","blue","green","brown","purple"]
+		{% with squares=4%}
+		
+		{% with "1 4 5 8 9 12 13 16" as points %}
+		<!--{%index = 0}-->
+		{% with 'red blue green brown purple' as colors %}
 		<!--
 		%for row in rows:
 			%if(index==0):
@@ -95,25 +105,31 @@
 			%index = index + 1
 		%end
 		-->
-		<div id="points" style="display:none">{{points}}</div>
+		<div id="points" style="display:none">{{points.split}}</div>
+		
+		<div class="rectangles">
+		
+		{% with '1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16' as list %}
+		{% for index1 in list.split %}
+				{% with width=100 %}
+				<div class="rectangle" style="width: 105px; height: 105px;" id="rectangle{{index1}}">
+					<div class="circle" style="width: {{width}}px; height: {{width}}px; " id="{{index1}}" onclick="return tubes(this)" onmousedown="return tubes(this)" onmouseup="return tubesExit(this)" onmouseenter="return mouseEnteringCircle(this)"></div>					
+				</div>				
+				{% endwith %}
+			{% if index1|divisibleby:squares %}
+				<br/>
+			{% endif %}
+		{% endfor %}
+		{% endwith %}
+		
+		</div>
+		
+		{% endwith %}
+		{% endwith %}
+		{% endwith %}
 		<script type="text/javascript">
 			loadPoints()
 		</script>
-		<div class="rectangles">
-		%count = 0;
-		%for index1 in range(1,int(squares)+1):
-			%for index2 in range(0,int(squares)):
-				%count = count + 1
-				<div class="rectangle" style="width: {{400/squares}}px; height: {{400/squares}}px;" id="rectangle{{count}}">
-					%if(count in points):
-						<div class="circle" style="width: {{400/squares - 5}}px; height: {{400/squares - 5}}px; background-color:{{colors[index1-1]}}" id="{{count}}" onclick="return tubes(this)" onmousedown="return tubes(this)" onmouseup="return tubesExit(this)" onmouseenter="return mouseEnteringCircle(this)"></div>
-					%else:
-						<div class="circle" style="width: {{400/squares - 5}}px; height: {{400/squares - 5}}px; background-color: white;" id="{{count}}" onmouseenter="return mouseEnteringCircle(this)" onclick="return tubes(this)" onmouseup="return tubesExit(this)"></div>
-					%end
-				</div>
-			%end
-			<br/>
-		%end
-		</div>
 	</body>
 </html>
+{% endautoescape %}
