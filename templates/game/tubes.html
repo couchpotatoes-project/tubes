@@ -81,7 +81,7 @@
 			}
 			
 			function mouseEnteringCircle(object){
-				if(circle != 0 && document.getElementById(object.id).style.backgroundColor == "white"){
+				if(circle != 0 && document.getElementById(object.id).style.backgroundColor == "white"){					
 					circleList.push(object.id);
 					document.getElementById(object.id).style.backgroundColor = document.getElementById(circle).style.backgroundColor;
 				}				
@@ -106,14 +106,12 @@
 		%end
 		-->
 		<div id="points" style="display:none">{{points.split}}</div>
-		
 		<div class="rectangles">
-		
 		{% with '1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16' as list %}
 		{% for index1 in list.split %}
 				{% with width=100 %}
 				<div class="rectangle" style="width: 105px; height: 105px;" id="rectangle{{index1}}">
-					<div class="circle" style="width: {{width}}px; height: {{width}}px; " id="{{index1}}" onclick="return tubes(this)" onmousedown="return tubes(this)" onmouseup="return tubesExit(this)" onmouseenter="return mouseEnteringCircle(this)"></div>					
+					<div class="circle" style="width: {{width}}px; height: {{width}}px; background-color:white" id="{{index1}}" onclick="return tubes(this)" onmousedown="return tubes(this)" onmouseup="return tubesExit(this)" onmouseenter="return mouseEnteringCircle(this)"></div>					
 				</div>				
 				{% endwith %}
 			{% if index1|divisibleby:squares %}
@@ -121,9 +119,7 @@
 			{% endif %}
 		{% endfor %}
 		{% endwith %}
-		
 		</div>
-		
 		{% endwith %}
 		{% endwith %}
 		{% endwith %}
