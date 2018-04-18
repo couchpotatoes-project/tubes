@@ -27,6 +27,6 @@ def count():
     return iterator
 	
 
-# def tubes(request, question_id):
-    ##result = [4,1,4,5,8,9,12,13,16]
-    # return render(request, 'tubes.html', {'rows': result})
+def tubes(request, question_id):    
+	result = [4,1,4,5,8,9,12,13,16]
+	return render(request, 'tubes.html', {'rows': result})
