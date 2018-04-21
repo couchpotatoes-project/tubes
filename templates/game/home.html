@@ -1,0 +1,42 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Tubes</title>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css" />
+		<link rel="stylesheet" href="{% static 'css/game.css' %}" type="text/css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-2">
+					<img src="{% static 'images/CouchPotatoesLogo.png' %}" class="img-responsive center-block" alt="ksu">
+				</div>
+				<div class="col-sm-8 title">
+					<h1 class="text-center center-block">TUBES</h1>
+				</div>
+			</div>
+			<div class="row align-items-center">
+				<div class="col-sm-2">					
+				</div>
+				<div class="col-sm-8">
+					<form action="/tubes">
+					{% with "4 5 6 7 8 9" as levels %}
+					{% for levelid in levels.split %}
+						<div class="col-sm-4 content levelBox">
+							<h2>Level: {{levelid}}</h2>
+							<h4>Completed: 0/10</h4>
+							<input type="submit" class="btn btn-default" value="Play"/>
+						</div>
+					{% endfor %}
+					{% endwith %}
+					</form>
+				</div>
+				<div class="col-sm-2">					
+				</div>								
+			</div>
+		</div>
+	</body>
+</html>

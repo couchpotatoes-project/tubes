@@ -5,41 +5,43 @@
 
 <head>
 	<title>Tubes</title>
-	<link rel="stylesheet" type="text/css" href="{% static 'css/game.css' %}" />
-	<style type="text/css">
-		h1 {
-		  color: white;
-		  font-family: 'Righteous', serif;
-		  font-size: 80px; 
-		  text-shadow: .03em .03em 0 hsla(230,40%,50%,1);
-		}
-	</style>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css" />
+	<link rel="stylesheet" href="{% static 'css/game.css' %}" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
-	<div class="comingsoonlogo">
-		<a href=""><img class="rotating" src="{% static 'images/CouchPotatoesLogo.png' %}" /></a>
-	</div>
-	<div class="container">
-		<div>
-			<span align="center">
-				<h1>TUBES</h1>
-			</span>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3 rotating">
+				<a href="../"><img src="{% static 'images/CouchPotatoesLogo.png' %}" class="img-responsive center-block" alt="ksu"></a>
+			</div>			
+			<div class="col-sm-5 title">
+				<span align="center">					
+					<h1>TUBES</h1>
+				</span>
+			</div>
+			<div class="col-sm-4">
+				<nav>
+					<ul class="menu">
+						<li>
+							<a href="gamerule/">Rules</a>
+						</li>
+						<li>
+							<a href="register/">Sign Up</a>
+						</li>
+						<li>
+							<a href="accounts/login">Sign In</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
 		</div>
-		<nav>
-			<ul class="menu">
-				<li>
-					<a href="gamerule/">Rules</a>
-				</li>
-				<li>
-					<a href="register/">Sign Up</a>
-				</li>
-				<li>
-					<a href="accounts/login">Sign In</a>
-				</li>
-			</ul>
-		</nav>
-	</div>
+		<div class="row">
+			
+		</div>
+	</div>	
 </body>
 
 </html>

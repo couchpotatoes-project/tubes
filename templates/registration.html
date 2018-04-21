@@ -1,9 +1,10 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<title>Couch Potatoes</title>
-	<meta charset="utf-8" /> {% load staticfiles %}
+	<title>Registration</title>
+	<meta charset="utf-8" />
 	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css" />
 	<link rel="stylesheet" href="{% static 'css/game.css' %}" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,7 +34,7 @@
 						<form method="post">
 							{% csrf_token %} {{ form.as_p }}
 							<div>
-								<input type="submit" value="Register" />
+								<input type="submit" value="Register" class="btn btn-primary" />
 								<input type="hidden" name="next" value="{{ next }}" />
 							</div>
 						</form>

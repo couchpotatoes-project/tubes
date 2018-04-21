@@ -1,11 +1,6 @@
 body {
-    background: url('../images/background.jpg');
-	background-repeat: no-repeat;
-	background-size: auto;
-	height: 100%;
-    width: 100%;
-	overflow-x: hidden;
-	overflow-y: hidden;
+    /*background-color: #659DBD;*/
+	background-color: #FAED26;
 }
 
 .container {
@@ -71,9 +66,8 @@ body {
 	padding-bottom: 54.91px !important;
 	font-size: 50px;
 	font-family: 'Righteous', serif;
-	text-shadow: 0.03em 0.03em 0 hsla(230,40%,50%,1);
-	color:white;
-	
+	text-shadow: 0.03em 0.03em 0 hsla(390,100%,75%,1);
+	color:#46344E;
 }
 
 .userinfo
@@ -85,7 +79,7 @@ body {
 {   font-size: 40px;
 	font-family: 'Righteous', serif;
 	text-shadow: 0.03em 0.03em 0 hsla(230,40%,50%,1);
-	color:white;
+	color:#46344E;
 }
 
 .img-responsive
@@ -102,19 +96,12 @@ body {
 		  letter-spacing: 1.1px;
 		}
 
-		body,
-		html {
-		  font-family: "Varela Round", sans-serif;
-		}
-
 		.menu {
 		  display: flex;
 		  justify-content: center;
 		  align-items: center;
 		  margin: 0 auto;
-		  position:absolute;
-		  top:5%;
-		  right:5%;
+		  padding-top: 70px !important;
 		  list-style: none;
 		}
 
@@ -127,18 +114,18 @@ body {
 		}
 		.menu li a {
 		  font-size: 22px;
-		  color: #000;
+		  color: #46344E;
 		  text-decoration: none;
 		  transition: all 0.45s;
 		}
 		.menu li:hover {
 		  background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEi%0D%0AIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhs%0D%0AaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKCSB3aWR0%0D%0AaD0iMzkwcHgiIGhlaWdodD0iNTBweCIgdmlld0JveD0iMCAwIDM5MCA1MCIgZW5hYmxlLWJhY2tn%0D%0Acm91bmQ9Im5ldyAwIDAgMzkwIDUwIiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPHBhdGggZmlsbD0i%0D%0Abm9uZSIgc3Ryb2tlPSIjZDk0ZjVjIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLW1pdGVybGlt%0D%0AaXQ9IjEwIiBkPSJNMCw0Ny41ODVjMCwwLDk3LjUsMCwxMzAsMAoJYzEzLjc1LDAsMjguNzQtMzgu%0D%0ANzc4LDQ2LjE2OC0xOS40MTZDMTkyLjY2OSw0Ni41LDI0My42MDMsNDcuNTg1LDI2MCw0Ny41ODVj%0D%0AMzEuODIxLDAsMTMwLDAsMTMwLDAiLz4KPC9zdmc+Cg==");
-		  color: #fff;
+		  color: #46344E;
 		  -webkit-animation: line 1s;
 				  animation: line 1s;
 		}
 		.menu li:hover a {
-		  color: #fff;
+		  color: #46344E;
 		}
 		.menu li:not(:last-child) {
 		  margin-right: 30px;
@@ -155,3 +142,10 @@ body {
 			background-position-x: 390px;
 		  }
 		}
+	
+.levelBox {
+	border: 3px solid #FAED26 ;
+	padding:10px;
+	border-radius:5px;
+	background:#659DBD;
+}

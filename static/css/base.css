@@ -1,56 +1,3 @@
-body {
-    background: url('../images/background.jpg');
-	background-repeat: no-repeat;
-	height: 100%;
-    width: 100%;
-	background-size: cover;
-	max-width: 100%;
-}
-
-
-.container {
-	width: 98%;
-    height: 98%;
-}
-
-
-.comingsoonlogo img{
-    max-height: 20%;
-    max-width: 20%;
-	min-height: 20%;
-    min-width: 20%;
-    text-shadow: 0 0 10px black, 1px 1px 10px black, 2px 2px 10px black, -1px -1px 10px black, -2px -2px 10px black;
-}
-
-
-.form {
-    text-align: center;
-    padding-top: 20px;
-}
-
-/* Safari 4.0 - 8.0 */
-@-webkit-keyframes logo {
-    0%   {left:0px; top:0px;}
-	1%   {left:-350px; top:0px;}
-	65%  {left:75%; top:0px;}
-    100% {left:0px; top:0px;}
-}
-
-/* Standard syntax */
-@keyframes logo {
-    0%   {left:0px; top:0px;}
-	1%   {left:-350px; top:0px;}
-	65%  {left:75%; top:0px;}
-    100% {left:0px; top:0px;}
-}
-
-h1 {
-  color: white;
-  font-family: 'Righteous', serif;
-  font-size: 80px; 
-  text-shadow: .03em .03em 0 hsla(230,40%,50%,1);
-}
-
 .description {
     font-family: 'Calibri', sans-serif;
     font-weight: bold;
@@ -62,17 +9,6 @@ h1 {
     text-align:left;
     left: auto;
     right: auto;
-  }
-  
-  .comingsoon {
-    opacity: 0;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    display:block;
-    position: relative;
-    margin-top: 7%;
-    left: auto;
-    right: auto;
-    text-align: center;
   }
   
   h2 {

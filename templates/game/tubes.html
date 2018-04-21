@@ -5,17 +5,21 @@
 <html>
 	<head>
 		<title>Tubes</title>
-		<link rel="stylesheet" type="text/css" href="{% static 'css/game.css' %}" />
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css" />
+		<link rel="stylesheet" href="{% static 'css/game.css' %}" type="text/css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<style type="text/css">
 			.rectangles {
 				max-width: 50%;
 			}
 			.rectangles .rectangle {
 				display: inline-block;
-				border: 1px solid yellow;
-				background-color: yellow;
+				border: 1px solid #659DBD;
+				background-color: #659DBD;
 				position: relative;
 				margin: -2px;
+				border-radius:5px;
 			}
 
 			.rectangles .rectangle .circle {
@@ -28,9 +32,6 @@
 		
 	</head>
 	<body>
-		<div class="comingsoonlogo">
-			<a href=""><img src="{% static 'images/CouchPotatoesLogo.png' %}" /></a>
-		</div>
 		<script type="text/javascript">
 			var moves = 0;
 			var circleList = [];
@@ -90,39 +91,57 @@
 				}
 			}
 		</script>
-		{% with squares=4%}
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-2">
+					<img src="{% static 'images/CouchPotatoesLogo.png' %}" class="img-responsive center-block" alt="ksu">
+				</div>
+				<div class="col-sm-8 title">
+					<h1 class="text-center center-block">TUBES</h1>
+				</div>
+			</div>
+			<div class="row align-items-center">
+				<div class="col-sm-2">					
+				</div>
+				<div class="col-sm-8">
+					{% with squares=4%}
 		
-		{% with "1 4 5 8 9 12 13 16" as points %}
-		<!--{%index = 0}-->
-		{% with 'red blue green brown purple' as colors %}
-		<!--
-		%for row in rows:
-			%if(index==0):
-				%squares = row
-			%else:
-				%points.append(row)
-			%end
-			%index = index + 1
-		%end
-		-->
-		<div id="points" style="display:none">{{points.split}}</div>
-		<div class="rectangles">
-		{% with '1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16' as list %}
-		{% for index1 in list.split %}
-				{% with width=100 %}
-				<div class="rectangle" style="width: 105px; height: 105px;" id="rectangle{{index1}}">
-					<div class="circle" style="width: {{width}}px; height: {{width}}px; background-color:white" id="{{index1}}" onclick="return tubes(this)" onmousedown="return tubes(this)" onmouseup="return tubesExit(this)" onmouseenter="return mouseEnteringCircle(this)"></div>					
+					{% with "1 4 5 8 9 12 13 16" as points %}
+					<!--{%index = 0}-->
+					{% with 'red blue green brown purple' as colors %}
+					<!--
+					%for row in rows:
+						%if(index==0):
+							%squares = row
+						%else:
+							%points.append(row)
+						%end
+						%index = index + 1
+					%end
+					-->
+					<div id="points" style="display:none">{{points.split}}</div>
+					<div class="rectangles" style="margin:auto;">
+					{% with '1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16' as list %}
+					{% for index1 in list.split %}
+							{% with width=100 %}
+							<div class="rectangle" style="width: 105px; height: 105px;" id="rectangle{{index1}}">
+								<div class="circle" style="width: {{width}}px; height: {{width}}px; background-color:white" id="{{index1}}" onclick="return tubes(this)" onmousedown="return tubes(this)" onmouseup="return tubesExit(this)" onmouseenter="return mouseEnteringCircle(this)"></div>					
+							</div>				
+							{% endwith %}
+						{% if index1|divisibleby:squares %}
+							<br/>
+						{% endif %}
+					{% endfor %}
+					{% endwith %}
+					</div>
+					{% endwith %}
+					{% endwith %}
+					{% endwith %}
+				</div>
+				<div class="col-sm-2">					
 				</div>				
-				{% endwith %}
-			{% if index1|divisibleby:squares %}
-				<br/>
-			{% endif %}
-		{% endfor %}
-		{% endwith %}
-		</div>
-		{% endwith %}
-		{% endwith %}
-		{% endwith %}
+			</div>
+		</div>		
 		<script type="text/javascript">
 			loadPoints()
 		</script>
