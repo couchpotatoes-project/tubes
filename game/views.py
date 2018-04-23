@@ -20,7 +20,13 @@ def register(request):
     return render(request, 'registration.html', args)
     	
 def home(request):
-    return render(request, 'game/tubes.html' ,  {'counter': itertools.count()})
+    if request.user.is_authenticated:
+        request.session['username'] = request.user.username
+        # session expires after 1800s
+        request.session.set_expiry(1800)
+        return render(request, 'game/tubes.html' ,  {'counter': itertools.count()})
+    else:
+        return redirect('/login')
 	
 def gamerule(request):
     return render(request, 'gamerule/gamerule.html' , context=None)

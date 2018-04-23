@@ -1,54 +1,25 @@
 {% extends "base.html" %}
 
+{% block title %}Login{% endblock %}
+
 {% block content %}
+{% if not request.user.is_authenticated %}
+<div style="text-align:center;">
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Login</button>
+  </form>
+  <div class="col-sm-12">				
+      <div class="col-sm-2"></div>
+      {# Assumes you setup the password_reset view in your URLconf #}
+      <div class="col-sm-4"><a href="{% url 'password_reset' %}">Forgot password?</a></div>
+    </div>
+<div>
+{% else %}
+<!--redirect to another page if user is alreadly logged in-->
+<meta http-equiv="refresh" content="0; url={% url 'home' %}">
 
-<head>
-  <title>Login</title>
-</head>
-
-{% if form.errors %}
-<p style="text-align:center;">Your username and password didn't match. Please try again.</p>
 {% endif %}
 
-{% if next %}
-    {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
-    {% else %}
-    <p>Please login to see this page.</p>
-    {% endif %}
-{% endif %}
-
-<div class="row userinfo">
-	<div class="col-sm-4"></div>
-	<div class="form col-sm-6 align-items-center">
-		<form method="post" action="{% url 'home' %}">
-			{% csrf_token %}
-			<div class="col-sm-12">
-			  <div class="col-sm-2">{{ form.username.label_tag }}</div>
-			  <div class="col-sm-4">{{ form.username }}</div>
-			</div>
-			<div class="col-sm-12"></div>
-			<div class="col-sm-12">
-			  <div class="col-sm-2">{{ form.password.label_tag }}</div>
-			  <div class="col-sm-4">{{ form.password }}</div>
-			</div>
-			<div class="col-sm-12"></div>
-			<div class="col-sm-12">			
-			  <div class="col-sm-2"></div>
-			  <div class="col-sm-4"><input type="submit" value="Login" class="btn btn-primary" /></div>
-			  <input type="hidden" name="next" value="{{ next }}" />
-			</div>
-			<div class="col-sm-12"></div>
-			<div class="col-sm-12">				
-				<div class="col-sm-2"></div>
-				{# Assumes you setup the password_reset view in your URLconf #}
-				<div class="col-sm-4"><a href="{% url 'password_reset' %}">Forgot password?</a></div>
-			</div>
-		</form>
-	</div>
-	<div class="col-sm-4"></div>
-</div>
-
-</div>
 {% endblock %}
