@@ -6,7 +6,7 @@ import time
 class RegisterTestCase(unittest.TestCase):
     def setUp(self):
 
-        self.driver = webdriver.Chrome('/Users/kishore/Downloads/chromedriver')
+        self.driver = webdriver.Chrome('/Users/kiran/Downloads/chromedriver')
 
         # Test success login
         self.username_val = "test1234"
