@@ -1,6 +1,5 @@
 import unittest
 from selenium import webdriver
-from selenium.webdriver.support.ui import Select
 import time
 
 
@@ -9,26 +8,33 @@ class RegisterTestCase(unittest.TestCase):
 
         self.driver = webdriver.Chrome('/Users/kishore/Downloads/chromedriver')
 
-    def test_submission(self):
-        driver = self.driver
+        # Test success login
+        self.username_val = "test1234"
+        self.email_val = "test1@test.com"
+        self.password_val = "TheDevilInI"
 
-        username_val = "test1234"
-        email_val = "test1@test.com"
-        password_val = "TheDevilInI"
+        # Test validation failure
+        self.username_val_fail = "test1234test"
+        self.email_val_fail = "testtest.com"
+        self.password_val_fail = "TheDevilInI"
+
+
+    def test_submission_success(self):
+        driver = self.driver
 
         driver.get('http://127.0.0.1:8000/register/')
 
         username = driver.find_element_by_id('id_username')
-        username.send_keys(username_val)
+        username.send_keys(self.username_val)
 
         email = driver.find_element_by_id('id_email')
-        email.send_keys(email_val)
+        email.send_keys(self.email_val)
 
         password = driver.find_element_by_id('id_password1')
-        password.send_keys(password_val)
+        password.send_keys(self.password_val)
 
         confirmpassword = driver.find_element_by_id('id_password2')
-        confirmpassword.send_keys(password_val)
+        confirmpassword.send_keys(self.password_val)
 
         driver.find_element_by_xpath("//input[@type='submit' and @value='Register']").click()
 
@@ -37,15 +43,17 @@ class RegisterTestCase(unittest.TestCase):
             print("Page is in login")
 
             login_username = driver.find_element_by_id('id_username')
-            login_username.send_keys(username_val)
+            login_username.send_keys(self.username_val)
 
             login_password = driver.find_element_by_id('id_password')
-            login_password.send_keys(password_val)
+            login_password.send_keys(self.password_val)
 
             driver.find_element_by_xpath("//button[@type='submit']").click()
 
-            if ('TUBES' in driver.page_source):
-                print("Logged into the page")
+            self.assertTrue('TUBES' in driver.page_source)
+            print("Logged into the page")
+        else:
+            print("Login Failed")
 
         time.sleep(10)
 
