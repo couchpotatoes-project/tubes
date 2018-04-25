@@ -36,10 +36,12 @@
 			var moves = 0;
 			var circleList = [];
 			var points = [];
-			var colors = ["red","blue","green","brown","purple"];
+			var colors = ["thistle","blue","cyan","brown","purple"];
+			var squares = 4;
 			function loadPoints(){
-				/*var str = document.getElementById("points").innerHTML;*/
-				var values = [1,4,5,8,9,12,13,16];
+				var str = document.getElementById("points").innerHTML;
+				var values = str.substring(0,str.length).split(',');
+				squares = parseInt(document.getElementById("squares").innerHTML);
 				var count=0;
 				for(var i=0;i<values.length;i++){
 					points.push(parseInt(values[i]));
@@ -54,6 +56,7 @@
 			
 			function moveIncrement(){
 				moves++;
+				document.getElementById("totalMoves").innerHTML = moves;
 			}
 			
 			var circle = 0;
@@ -78,7 +81,19 @@
 					}
 					circle = 0;
 					circleList = [];
-				}				
+				}
+				
+				var finish = true;
+				for(var i=1;i<=(squares*squares);i++){
+					if(document.getElementById(i).style.backgroundColor == "white"){
+						finish = false;
+						break;
+					}					
+				}
+				if(finish){
+					alert("Congratulations. You have successfully finished this level.");
+					window.location.href="/home";
+				}
 			}
 			
 			function mouseEnteringCircle(object){
@@ -96,49 +111,45 @@
 				<div class="col-sm-2">
 					<img src="{% static 'images/CouchPotatoesLogo.png' %}" class="img-responsive center-block" alt="ksu">
 				</div>
-				<div class="col-sm-8 title">
+				<div class="col-sm-6 title">
 					<h1 class="text-center center-block">TUBES</h1>
+				</div>
+				<div class="col-sm-4">
+					<nav>
+						<ul class="menu">
+							<li>
+								<a href="home">Levels</a>
+							</li>
+							<li>
+								<a href="logout">Sign Out</a>
+							</li>
+						</ul>
+					</nav>
 				</div>
 			</div>
 			<div class="row align-items-center">
 				<div class="col-sm-2">					
 				</div>
 				<div class="col-sm-8">
-					{% with squares=4%}
-		
-					{% with "1 4 5 8 9 12 13 16" as points %}
-					<!--{%index = 0}-->
-					{% with 'red blue green brown purple' as colors %}
-					<!--
-					%for row in rows:
-						%if(index==0):
-							%squares = row
-						%else:
-							%points.append(row)
-						%end
-						%index = index + 1
-					%end
-					-->
-					<div id="points" style="display:none">{{points.split}}</div>
+					<div id="squares" style="display:none">{{ squares }}</div>
+					<div id="points" style="display:none">{{ points }}</div>
 					<div class="rectangles" style="margin:auto;">
 					{% with '1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16' as list %}
-					{% for index1 in list.split %}
-							{% with width=100 %}
-							<div class="rectangle" style="width: 105px; height: 105px;" id="rectangle{{index1}}">
-								<div class="circle" style="width: {{width}}px; height: {{width}}px; background-color:white" id="{{index1}}" onclick="return tubes(this)" onmousedown="return tubes(this)" onmouseup="return tubesExit(this)" onmouseenter="return mouseEnteringCircle(this)"></div>					
+					{% for index1 in counter %}
+							<div class="rectangle" style="width: {{rectangleWidth}}px; height: {{rectangleWidth}}px;" id="rectangle{{index1}}">
+								<div class="circle" style="width: {{circleWidth}}px; height: {{circleWidth}}px; background-color:white" id="{{index1}}" onclick="return tubes(this)" onmousedown="return tubes(this)" onmouseup="return tubesExit(this)" onmouseenter="return mouseEnteringCircle(this)"></div>					
 							</div>				
-							{% endwith %}
 						{% if index1|divisibleby:squares %}
 							<br/>
 						{% endif %}
 					{% endfor %}
 					{% endwith %}
 					</div>
-					{% endwith %}
-					{% endwith %}
-					{% endwith %}
 				</div>
-				<div class="col-sm-2">					
+				<div class="col-sm-2">
+					<div style="display:inline-block;">
+						<h4>Moves: <div id="totalMoves">0</div></h4>
+					</div>
 				</div>				
 			</div>
 		</div>		

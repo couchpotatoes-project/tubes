@@ -27,17 +27,17 @@
 					<ul class="menu">
 						<li>
 							<a href="gamerule/">Rules</a>
-						</li>
-						<li>
+						</li>						
 							{% if not request.user.is_authenticated %}
-							<a href="register/">Sign Up</a>
+							<li>
+								<a href="register/">Sign Up</a>
+							</li>
 							{% endif %}
-						</li>
 						<li>
 							{% if request.user.is_authenticated %}
 							<a href="logout">Sign Out</a>
 							{% else %}
-							<a href="login">Sign In</a>
+							<a href="login/">Sign In</a>
 							{% endif %}
 						</li>
 					</ul>
