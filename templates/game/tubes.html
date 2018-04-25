@@ -54,6 +54,14 @@
 				}
 			}
 			
+			function pauseEvent(e){
+				if(e.stopPropagation) e.stopPropagation();
+				if(e.preventDefault) e.preventDefault();
+				e.cancelBubble=true;
+				e.returnValue=false;
+				return false;
+			}
+			
 			function moveIncrement(){
 				moves++;
 				document.getElementById("totalMoves").innerHTML = moves;
@@ -61,6 +69,7 @@
 			
 			var circle = 0;
 			function tubes(object){
+				pauseEvent(window.event);
 				if(document.getElementById(object.id).style.backgroundColor != "white"){
 					circle = object.id;
 					moveIncrement();
@@ -71,6 +80,7 @@
 			}
 			
 			function tubesExit(object){
+				pauseEvent(window.event);
 				if(points.indexOf(parseInt(object.id)) != -1 && document.getElementById(object.id).style.backgroundColor == document.getElementById(circle).style.backgroundColor){
 					circle = 0;
 					circleList = [];
@@ -97,6 +107,7 @@
 			}
 			
 			function mouseEnteringCircle(object){
+				pauseEvent(window.event);
 				if(circle != 0 && document.getElementById(object.id).style.backgroundColor == "white"){					
 					circleList.push(object.id);
 					document.getElementById(object.id).style.backgroundColor = document.getElementById(circle).style.backgroundColor;
