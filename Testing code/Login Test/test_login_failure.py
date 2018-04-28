@@ -6,7 +6,7 @@ import time
 class RegisterTestCase(unittest.TestCase):
     def setUp(self):
 
-        self.driver = webdriver.Chrome('/Users/kishore/Downloads/chromedriver')
+        self.driver = webdriver.Chrome('/Users/kiran/Downloads/chromedriver')
 
         # Test validation failure
         self.username_val_success = "test1234test"
