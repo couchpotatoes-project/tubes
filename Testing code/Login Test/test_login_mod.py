@@ -18,7 +18,6 @@ class RegisterTestCase(unittest.TestCase):
         self.email_val_fail = "testtest.com"
         self.password_val_fail = "TheDevilInI"
 
-
     def test_submission_success(self):
         driver = self.driver
 
