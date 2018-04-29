@@ -47,7 +47,7 @@ class RegisterTestCase(unittest.TestCase):
             login_password = driver.find_element_by_id('id_password')
             login_password.send_keys(self.password_val)
 
-            driver.find_element_by_xpath("//button[@type='submit']").click()
+            driver.find_element_by_css_selector(".btn.btn-primary").click()
 
             self.assertTrue('TUBES' in driver.page_source)
             print("Logged into the page")

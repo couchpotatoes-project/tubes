@@ -105,9 +105,9 @@ class RegisterTestCase(unittest.TestCase):
         password = driver.find_element_by_id('id_password')
         password.send_keys(self.password_val_success)
 
-        driver.find_element_by_xpath("//button[@type='submit']").click()
+        driver.find_element_by_css_selector(".btn.btn-primary").click()
 
-        self.assertTrue("Please enter a correct username and password. Note that both fields may be case-sensitive." in driver.page_source)
+        self.assertTrue("Your username and password didn't match. Please try again." in driver.page_source)
 
         time.sleep(10)
 
