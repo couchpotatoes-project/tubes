@@ -30,6 +30,6 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     url(r'^login/$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout, name='logout'),
-	path('home/', views.home, name="home"),
-	path('tubes/', views.tubes, name="tubes")
+	path('home', views.home, name="home"),
+	path('tubes', views.tubes, name="tubes")
 ]

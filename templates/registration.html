@@ -34,7 +34,7 @@
 						<form method="post">
 							{% csrf_token %} {{ form.as_p }}
 							<div>
-								<input type="submit" value="Register" class="btn btn-primary" />
+								<input type="submit" id="RegisterButton" value="Register" class="btn btn-primary" />
 								<input type="hidden" name="next" value="{{ next }}" />
 							</div>
 						</form>
