@@ -27,6 +27,15 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'couchpotatoes.kentstate@gmail.com'
+SERVER_EMAIL = 'couchpotatoes.kentstate@gmail.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'couchpotatoes.kentstate@gmail.com'
+EMAIL_HOST_PASSWORD = 'KentState2018'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
 APPEND_SLASH=True
 # Application definition
 
@@ -131,7 +140,3 @@ STATIC_ROOT = 'staticfiles'
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/home'
-
-#dummy email backend
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
