@@ -38,6 +38,7 @@
 			var points = [];
 			var colors = ["thistle","blue","cyan","brown","purple"];
 			var squares = 4;
+			var connected = [];
 			function loadPoints(){
 				var str = document.getElementById("points").innerHTML;
 				var values = str.substring(0,str.length).split(',');
@@ -52,6 +53,10 @@
 						document.getElementById(values[i]).style.backgroundColor = colors[count++];
 					}
 				}
+			}
+			
+			function pageRefresh(){
+				location.reload();
 			}
 			
 			function pauseEvent(e){
@@ -84,6 +89,8 @@
 			function tubesExit(object){
 				pauseEvent(window.event);
 				if(points.indexOf(parseInt(object.id)) != -1 && document.getElementById(object.id).style.backgroundColor == document.getElementById(circle).style.backgroundColor){
+					connected.push(circle);
+					connected.push(object.id);
 					circle = 0;
 					circleList = [];
 				}
@@ -100,8 +107,28 @@
 					if(document.getElementById(i).style.backgroundColor == "white"){
 						finish = false;
 						break;
-					}					
+					}
 				}
+				if(connected.length == points.length){
+					var checkpoints = points;
+					for(var p=0;p<connected.length;p++){
+						var index = checkpoints.indexOf(parseInt(connected[p]));
+						if(index==-1){
+							finish=false;
+							break;
+						}
+						else{
+							checkpoints.splice(index,1);
+						}
+					}
+					if(checkpoints.length!=0){
+						finish=false;
+					}
+				}
+				else{
+					finish = false;
+				}
+				
 				if(finish){
 					alert("Congratulations. You have successfully finished this level.");
 					$.ajax({
@@ -137,9 +164,21 @@
 			
 			function mouseEnteringCircle(object){
 				pauseEvent(window.event);
-				if(circle != 0 && document.getElementById(object.id).style.backgroundColor == "white"){					
-					circleList.push(object.id);
-					document.getElementById(object.id).style.backgroundColor = document.getElementById(circle).style.backgroundColor;
+				if(circle != 0 && document.getElementById(object.id).style.backgroundColor == "white"){
+					var  diff;
+					if(circleList.length != 0){
+						diff = parseInt(object.id)-parseInt(circleList[circleList.length -1]);						
+					}
+					else{
+						diff = parseInt(object.id)-circle;
+					}
+					if(diff==1 || diff==parseInt(document.getElementById("squares").innerHTML) || diff==-parseInt(document.getElementById("squares").innerHTML) || diff==-1){
+						circleList.push(object.id);
+						document.getElementById(object.id).style.backgroundColor = document.getElementById(circle).style.backgroundColor;
+					}
+					else{
+						tubesExit(object);
+					}
 				}				
 				else if(circle!=0 && document.getElementById(object.id).style.backgroundColor != "white"){
 					tubesExit(object);
@@ -157,6 +196,9 @@
 				<div class="col-sm-4">
 					<nav>
 						<ul class="menu">
+							<li>
+								<a href="gamerule/">Rules</a>
+							</li>
 							<li>
 								<a href="home">Levels</a>
 							</li>
@@ -188,7 +230,10 @@
 				</div>
 				<div class="col-sm-2">
 					<div style="display:inline-block;">
-						<h4>Moves: <div id="totalMoves">0</div></h4>
+						<h4>Moves: <span id="totalMoves">0</span></h4>
+					</div>
+					<div style="display:inline-block;">
+						<img src="{% static 'images/refresh.png' %}" style="width:25%;height:25%;cursor:pointer;" alt="refresh" onclick="pageRefresh()"/>
 					</div>
 				</div>				
 			</div>
