@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load tubes %}
 <!DOCTYPE html>
 <html>
 	<head>
@@ -40,7 +41,7 @@
 						<div class="col-sm-4 content levelBox">
 							<input type="hidden" name="level" id="level{{levelid}}" value="{{levelid}}"/>
 							<h2>Level: {{levelid}}</h2>
-							<h4>Completed: {{completedLevels.get(int(levelid))}}/{{totalLevels.items.levelid}}</h4>
+							<h4>Completed: {{completedLevels|get_item:levelid }}/{{totalLevels|get_item:levelid}}</h4>
 							<input type="submit" class="btn btn-default" value="Play"/>
 						</div>
 					</form>
