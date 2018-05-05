@@ -1,36 +1,39 @@
 {% extends "admin/base.html" %}
 {% load staticfiles %}
-
-
-
-        
-        {% load i18n %}
-        {% block title %}{{ title }} | {% trans 'Couch Potatoes Admin' %}
+{% load i18n %}
+{% block title %}
+{{ title }} | {% trans 'Couch Potatoes Admin' %}
 {% endblock%}
-        
-    
 {% block extrastyle %}
 <link rel="stylesheet" href="{% static 'css/game.css' %}" type="text/css" />
 <style type="text/css">
-
     #header {
         background-color: #1b53b9;
         border-bottom: solid 3px #ea1d3a00;
     }
 
+/*.login {
+    background: url("{% static 'images/background.jpg'' %}")!important; 
+}*/
+    .login
+  {
+        /*background-color: #659DBD;*/
+        background: #FAED26!important; 
+    }
 
     #branding h1 {
         color: #fff;
     }
 
-    #content, #content-main {
+    #content,
+    #content-main {
         color: #825890
     }
 
     .module h2,
     .module caption,
     .inline-group h2 {
-        
+
         color: #333940;
     }
 
@@ -39,13 +42,16 @@
         color: #666666;
     }
 
-    .button, input[type=submit], input[type=button], .submit-row input, a.button {
-    background: #1b53b9;
-}
+    .button,
+    input[type=submit],
+    input[type=button],
+    .submit-row input,
+    a.button {
+        background: #1b53b9;
+        color: #fff;
+    }
 </style>
 {% endblock %}
 {% block branding %}
 <h1 id="site-name">{% trans 'Couch Potatoes Admin' %}</h1>
-{% endblock %} 
-{% block nav-global %}
-{% endblock %}
+{% endblock %} {% block nav-global %} {% endblock %}
