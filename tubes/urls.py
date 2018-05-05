@@ -18,14 +18,10 @@ from django.urls import path, include,reverse
 from django.conf.urls import include, url
 from game import views
 from django.contrib.auth import views as auth_views
-from utils.views import ResetPasswordRequestView, PasswordResetConfirmView
-#from django.views.generic.base import RedirectView
 
 urlpatterns = [
 	url(r'^$', views.HomePageView.as_view()),
-	path('accounts/reset_password_confirm/<uidb64>/<token>/', PasswordResetConfirmView.as_view(), name='reset_password_confirm'),
-	url(r'^accounts/reset_password', ResetPasswordRequestView.as_view(), name="reset_password"),
-	url('^', include('django.contrib.auth.urls')),
+    url('^', include('django.contrib.auth.urls')),
 	path('gamerule/', views.gamerule, name="gamerule"),
 	path('register/', views.register, name='register'),
     path('admin/', admin.site.urls),
