@@ -6,3 +6,10 @@ class Level(models.Model):
     levelId = models.IntegerField()
     squares = models.IntegerField()
     positions = models.TextField()
+	
+class UserScore(models.Model):
+	id= models.AutoField(primary_key=True)
+	username = models.TextField()
+	levelId = models.IntegerField()
+	moves = models.IntegerField()
+	time = models.TextField()

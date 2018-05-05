@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,render_to_response
 from django.template  import RequestContext
 from game.forms import RegistrationForm
-from game.models import Level
+from game.models import Level, UserScore
 from django.views.generic import TemplateView
 
 class HomePageView(TemplateView):
@@ -30,17 +30,33 @@ def home(request):
 			levelId = {}
 			for object in objectList:
 				levelId[object.id] = object.levelId
-			return render(request, 'game/levels.html' ,  {'squares': level , 'identity':levelId})
+			
+			return render(request, 'game/levels.html' ,  {'squares': level , 'identity':levelId })
 		else:
 			request.session['username'] = request.user.username
 			# session expires after 1800s
 			request.session.set_expiry(1800)
 			id = Level.objects.all()
 			squares = []
+			
+			totals = {}
+			completed = {}
 			for q in id:
+				totalLevels = 0
+				completedLevels = 0
 				if not q.squares in squares:
 					squares.append(q.squares)
-			return render(request, 'game/home.html' ,  {'squares': squares})
+					for object in Level.objects.filter(squares=q.squares):
+						totalLevels = totalLevels + 1
+						try:
+							levelscore = UserScore.objects.get(username=request.user.username,levelId=object.id)
+							completedLevels = completedLevels + 1							
+						except:
+							completedLevels = completedLevels
+					totals[q.squares] = totalLevels
+					completed[q.squares] = completedLevels
+			
+			return render(request, 'game/home.html' ,  {'squares': squares, 'totalLevels':totals, 'completedLevels':completed})
 	else:
 		return redirect('login/')
 	
@@ -61,3 +77,22 @@ def tubes(request):
 			return render(request, 'game/tubes.html' ,  {'squares': squares , 'identity':level , 'points':points, 'counter':counter, 'circleWidth':circleWidth, 'rectangleWidth':rectangleWidth})
 	else:
 		return redirect('login/')
+
+def savescore(request):
+	if request.method == 'POST':
+		username = request.POST.get('username','').strip()
+		level = request.POST.get('level','').strip()
+		moves = request.POST.get('moves','').strip()
+		time = request.POST.get('time','').strip()
+		try:
+			levelscore = UserScore.objects.get(username=username,levelId=level)
+			if(int(moves) < levelscore.moves):
+				userscore = UserScore.objects.get(username=username,levelId=level).update(moves=moves,time=time)
+				userscore.save()
+		except UserScore.DoesNotExist:
+			userscore = UserScore(username=username,levelId=level,moves=moves,time=time)
+			userscore.save()
+		
+		return redirect('home')
+	else:
+		return redirect('home')

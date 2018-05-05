@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css" />
 		<link rel="stylesheet" href="{% static 'css/game.css' %}" type="text/css" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<style type="text/css">
 			.rectangles {
 				max-width: 50%;
@@ -104,7 +105,34 @@
 				}
 				if(finish){
 					alert("Congratulations. You have successfully finished this level.");
-					window.location.href="/home";
+					$.ajax({
+						url: 'savescore',
+						type:"POST",
+						data: {
+						  'username': '{{ request.user.username }}',
+						  'level':'{{ identity }}',
+						  'moves':moves,
+						  'time':'01:00',
+						  'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),
+						},
+						dataType: 'json',
+						success: function (data) {
+							alert("Congratulations. You have successfully finished this level.");
+						}
+					  });
+					/*window.location.href="/home";
+					html2canvas($("#widget"), {
+						onrendered: function(canvas) {
+							theCanvas = canvas;
+							document.body.appendChild(canvas);
+
+							// Convert and download as image 
+							Canvas2Image.saveAsPNG(canvas); 
+							$("#img-out").append(canvas);
+							// Clean up 
+							//document.body.removeChild(canvas);
+						}
+					});*/
 				}
 			}
 			
@@ -119,7 +147,7 @@
 				}
 			}
 		</script>
-		<div class="container-fluid">
+		<div class="container-fluid">{% csrf_token %}
 			<div class="row">
 				<div class="col-sm-2">
 					<img src="{% static 'images/CouchPotatoesLogo.png' %}" class="img-responsive center-block" alt="ksu">

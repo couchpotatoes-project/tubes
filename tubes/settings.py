@@ -26,6 +26,16 @@ SECRET_KEY = ')%q(_o*x#sy-x9sh74-r=k(cx8l7dp9#li0=3dm+irw=voaq00'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'couchpotatoes.kentstate@gmail.com'
+SERVER_EMAIL = 'couchpotatoes.kentstate@gmail.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'couchpotatoes.kentstate@gmail.com'
+EMAIL_HOST_PASSWORD = 'KentStateCP@2018'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 APPEND_SLASH=True
 # Application definition
 

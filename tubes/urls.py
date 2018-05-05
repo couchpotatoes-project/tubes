@@ -37,4 +37,5 @@ urlpatterns = [
 	url(r'^logout/$', auth_views.logout, name='logout'),
 	path('home', views.home, name="home"),
 	path('tubes', views.tubes, name="tubes"),	
+	path('savescore', views.savescore, name='savescore')	
 ]
