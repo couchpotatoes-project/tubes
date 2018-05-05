@@ -55,6 +55,10 @@
 				}
 			}
 			
+			function pageRefresh(){
+				location.reload();
+			}
+			
 			function pauseEvent(e){
 				if(e.stopPropagation) e.stopPropagation();
 				if(e.preventDefault) e.preventDefault();
@@ -227,6 +231,9 @@
 				<div class="col-sm-2">
 					<div style="display:inline-block;">
 						<h4>Moves: <span id="totalMoves">0</span></h4>
+					</div>
+					<div style="display:inline-block;">
+						<img src="{% static 'images/refresh.png' %}" style="width:25%;height:25%;cursor:pointer;" alt="refresh" onclick="pageRefresh()"/>
 					</div>
 				</div>				
 			</div>
