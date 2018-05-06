@@ -28,6 +28,51 @@
 			  position: absolute;
 			  margin: 2.5px;
 			}
+			
+			.gamefinish {
+					-webkit-animation: finish 2s linear 2;
+					-moz-animation: finish 2s linear 2;
+					-ms-animation: finish 2s linear 2;
+					-o-animation: finish 2s linear 2;
+					animation: finish 2s linear 2;
+					-webkit-animation-direction: alternate;
+					-moz-animation-direction: alternate;
+					-ms-animation-direction: alternate;
+					-o-animation-direction: alternate;
+					animation-direction: alternate;
+			}
+
+			/* Safari 4.0 - 8.0 */
+			@-webkit-keyframes finish {
+				from {
+					-webkit-transform: rotate(0deg);
+					-o-transform: rotate(0deg);
+					transform: rotate(0deg);
+				  }
+				  to {
+					-webkit-transform: rotate(360deg);
+					-o-transform: rotate(360deg);
+					transform: rotate(360deg);
+				  }
+			}
+
+			/* Standard syntax */
+			@keyframes finish {
+				from {
+					-ms-transform: rotate(0deg);
+					-moz-transform: rotate(0deg);
+					-webkit-transform: rotate(0deg);
+					-o-transform: rotate(0deg);
+					transform: rotate(0deg);
+				  }
+				  to {
+					-ms-transform: rotate(360deg);
+					-moz-transform: rotate(360deg);
+					-webkit-transform: rotate(360deg);
+					-o-transform: rotate(360deg);
+					transform: rotate(360deg);
+				  }
+			}
 		</style>
 		
 	</head>
@@ -141,24 +186,10 @@
 						  'time':'01:00',
 						  'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),
 						},
-						dataType: 'json',
-						success: function (data) {
-							alert("Congratulations. You have successfully finished this level.");
-						}
-					  });
-					/*window.location.href="/home";
-					html2canvas($("#widget"), {
-						onrendered: function(canvas) {
-							theCanvas = canvas;
-							document.body.appendChild(canvas);
-
-							// Convert and download as image 
-							Canvas2Image.saveAsPNG(canvas); 
-							$("#img-out").append(canvas);
-							// Clean up 
-							//document.body.removeChild(canvas);
-						}
-					});*/
+						dataType: 'json'
+					});
+					//window.location.href="/home";
+					document.getElementById("rectangles").classList.add("gamefinish");
 				}
 			}
 			
@@ -215,7 +246,7 @@
 				<div class="col-sm-8">
 					<div id="squares" style="display:none">{{ squares }}</div>
 					<div id="points" style="display:none">{{ points }}</div>
-					<div class="rectangles" style="margin:auto;min-width:405px;">
+					<div id="rectangles" class="rectangles" style="margin:auto;min-width:405px;">
 					{% with '1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16' as list %}
 					{% for index1 in counter %}
 							<div class="rectangle" style="width: {{rectangleWidth}}px; height: {{rectangleWidth}}px;" id="rectangle{{index1}}">
@@ -237,6 +268,7 @@
 					</div>
 				</div>				
 			</div>
+			
 		</div>		
 		<script type="text/javascript">
 			loadPoints()
