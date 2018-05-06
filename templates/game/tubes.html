@@ -137,7 +137,12 @@
 				//pauseEvent(window.event);
 				if(document.getElementById(object.id).style.backgroundColor != "white"){
 					circle = object.id;
-					if(window.event.type=="mousedown"){					
+					if (navigator.userAgent.search("Chrome") >= 0) {
+						if(window.event.type=="mousedown"){					
+							moveIncrement();
+						}
+					}
+					else{
 						moveIncrement();
 					}
 				}
@@ -149,8 +154,12 @@
 			function tubesExit(object){
 				//pauseEvent(window.event);
 				if(points.indexOf(parseInt(object.id)) != -1 && document.getElementById(object.id).style.backgroundColor == document.getElementById(circle).style.backgroundColor){
-					connected.push(circle);
-					connected.push(object.id);
+					if(connected.indexOf(circle)==-1){
+						connected.push(circle);
+					}
+					if(connected.indexOf(object.id)==-1){
+						connected.push(object.id);
+					}
 					circle = 0;
 					circleList = [];
 				}
