@@ -77,7 +77,21 @@
 		
 	</head>
 	<body>
-		<script type="text/javascript">
+		<script type="text/javascript">			
+			$(document).ready(function(){
+				$(".circle").click(function(event){
+					event.preventDefault();
+				});
+				$(".circle").mousedown(function(event){
+					event.preventDefault();
+				});
+				$(".circle").mouseup(function(event){
+					event.preventDefault();
+				});
+				$(".circle").mouseenter(function(event){
+					event.preventDefault();
+				});
+			});
 			var moves = 0;
 			var circleList = [];
 			var points = [];
@@ -118,8 +132,9 @@
 			}
 			
 			var circle = 0;
-			function tubes(object){
-				pauseEvent(window.event);
+			function tubes(object){				
+				//alert(window.event);
+				//pauseEvent(window.event);
 				if(document.getElementById(object.id).style.backgroundColor != "white"){
 					circle = object.id;
 					if(window.event.type=="mousedown"){					
@@ -132,7 +147,7 @@
 			}
 			
 			function tubesExit(object){
-				pauseEvent(window.event);
+				//pauseEvent(window.event);
 				if(points.indexOf(parseInt(object.id)) != -1 && document.getElementById(object.id).style.backgroundColor == document.getElementById(circle).style.backgroundColor){
 					connected.push(circle);
 					connected.push(object.id);
@@ -194,7 +209,7 @@
 			}
 			
 			function mouseEnteringCircle(object){
-				pauseEvent(window.event);
+				//pauseEvent(window.event);
 				if(circle != 0 && document.getElementById(object.id).style.backgroundColor == "white"){
 					var  diff;
 					if(circleList.length != 0){
