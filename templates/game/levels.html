@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load tubes %}
 <!DOCTYPE html>
 <html>
 	<head>
@@ -44,6 +45,12 @@
 							<input type="hidden" name="level" id="level{{id}}" value="{{id}}"/>
 							<h2 style="margin-left:auto;margin-right:auto;">{{levelid}}</h2>
 							<input type="submit" class="btn btn-default" value="Play"/>
+							<h6 style="margin-left:auto;margin-right:auto;">Completed: {{playedLevels|get_item:levelid}}</h6>
+							{% if playedLevels|get_item:levelid == "Yes" %}
+								<h6 style="margin-left:auto;margin-right:auto;">Best Moves: {{bestMoves|get_item:levelid}}</h6>
+							{% else %}
+								<h6><br/></h6>
+							{% endif %}
 						</div>
 					</form>
 					{% endfor %}					

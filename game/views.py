@@ -28,15 +28,24 @@ def home(request):
 				objectList.append(object)
 				
 			levelId = {}
+			levelPlayed = {}
+			bestMoves = {}
 			for object in objectList:
-				levelId[object.id] = object.levelId
+				levelId[object.id] = object.levelId			
+				try:
+					levelscore = UserScore.objects.get(username=request.user.username,levelId=object.id)
+					levelPlayed[object.levelId] = "Yes"
+					bestMoves[object.levelId] = levelscore.moves
+				except UserScore.DoesNotExist:
+					levelPlayed[object.levelId] = "No"
+					bestMoves[object.levelId] = 0
 			
-			return render(request, 'game/levels.html' ,  {'squares': level , 'identity':levelId })
+			return render(request, 'game/levels.html' ,  {'squares': level , 'identity':levelId, 'playedLevels':levelPlayed, 'bestMoves':bestMoves })
 		else:
 			request.session['username'] = request.user.username
 			# session expires after 1800s
 			request.session.set_expiry(1800)
-			id = Level.objects.all()
+			id = Level.objects.all().order_by('squares')
 			squares = []
 			
 			totals = {}
@@ -87,8 +96,7 @@ def savescore(request):
 		try:
 			levelscore = UserScore.objects.get(username=username,levelId=level)
 			if(int(moves) < levelscore.moves):
-				userscore = UserScore.objects.get(username=username,levelId=level).update(moves=moves,time=time)
-				userscore.save()
+				userscore = UserScore.objects.filter(username=username,levelId=level).update(moves=moves,time=time)
 		except UserScore.DoesNotExist:
 			userscore = UserScore(username=username,levelId=level,moves=moves,time=time)
 			userscore.save()
